@@ -14,14 +14,16 @@ public class Sucursal {
     private String Direccion; 
     private Integer Telefono;
     private Ciudad Ciudad; 
+    private OrdenCompra OrdenCompra; 
 
-    public Sucursal(Long id, String Nombre, Double Tamano, String Direccion, Integer Telefono, Ciudad Ciudad){
+    public Sucursal(Long id, String Nombre, Double Tamano, String Direccion, Integer Telefono, Ciudad Ciudad, OrdenCompra OrdenCompra){
         this.id=id; 
         this.Nombre=Nombre; 
         this.Tamano=Tamano;
         this.Direccion=Direccion;
         this.Telefono=Telefono; 
         this.Ciudad=Ciudad; 
+        this.OrdenCompra=OrdenCompra;
     }
 
     public Sucursal(){}
@@ -72,6 +74,14 @@ public class Sucursal {
     
     public void setCiudad(Ciudad Ciudad) {
         this.Ciudad = Ciudad;
+    }
+
+    public OrdenCompra getOrden(){
+        return this.OrdenCompra;
+    }
+
+    public void serOrden(OrdenCompra OrdenCompra){
+        this.OrdenCompra=OrdenCompra;
     }
     
 

@@ -6,16 +6,16 @@ import lombok.ToString;
 public class InfoOrden {
     private Integer Cantidad; 
     private Double CostoUnitarioCompra; 
-    private Producto Producto; 
+    private Long Producto; 
 
-    public InfoOrden(Integer Cantidad, Double CostoUnitarioCompra, Producto Producto){
+    public InfoOrden(Integer Cantidad, Double CostoUnitarioCompra, Long Producto){
         this.Cantidad=Cantidad; 
         this.CostoUnitarioCompra=CostoUnitarioCompra; 
         this.Producto=Producto; 
     }
 
     public InfoOrden(){}
-    
+
     public Integer getCantidaf(){
         return this.Cantidad; 
     }
@@ -32,11 +32,11 @@ public class InfoOrden {
         this.CostoUnitarioCompra=CostoUnitarioCompra; 
     }
 
-    public Producto getProducto(){
+    public Long getProducto(){
         return this.Producto; 
     }
 
-    public void setProducto(Producto Producto){
+    public void setProducto(long Producto){
         this.Producto=Producto; 
     }
 }

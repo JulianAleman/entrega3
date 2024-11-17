@@ -16,9 +16,9 @@ public class Proveedor {
     private String Direccion; 
     private String NombreContacto; 
     private Long TelefonoContacto; 
-    private List<Producto> Productos; 
+    private List<Long> Productos; 
 
-    public Proveedor(Long Nit, String Nombre, String Direccion, String NombreContacto, Long TelefonoContacto, List<Producto> productos){
+    public Proveedor(Long Nit, String Nombre, String Direccion, String NombreContacto, Long TelefonoContacto, List<Long> productos){
         this.Nit=Nit; 
         this.Nombre=Nombre; 
         this.Direccion=Direccion; 
@@ -69,11 +69,11 @@ public class Proveedor {
         this.TelefonoContacto = TelefonoContacto;
     }
     
-    public List<Producto> getProductos() {
+    public List<Long> getProductos() {
         return this.Productos;
     }
     
-    public void setProductos(List<Producto> productos) {
+    public void setProductos(List<Long> productos) {
         this.Productos = productos;
     }
     

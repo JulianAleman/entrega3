@@ -9,22 +9,21 @@ import lombok.ToString;
 public class Bodega {
     @Id
     private int id; 
-    private String nombre; 
-    private Double capacidadAlmacenamiento; 
-    private Double tamano; 
-    private int totalExistencias; 
-    private List<Producto> productos; 
-    private List<RecepcionProductos> recepciones; 
+    private String Nombre; 
+    private Double Tamano; 
+    private List<InfoProducto> Productos; 
+    private List<RecepcionProductos> Recepciones; 
 
-    public Bodega(int id, String nombre, Double capacidadAlmacenamiento, Double tamaño, int totalExistencias, List<Producto> productos, List<RecepcionProductos> recepciones ){
+    public Bodega(int id, String nombre, Double capacidadAlmacenamiento, Double tamaño, int totalExistencias, List<InfoProducto> productos, List<RecepcionProductos> recepciones ){
         this.id=id;
-        this.nombre=nombre; 
-        this.capacidadAlmacenamiento=capacidadAlmacenamiento; 
-        this.tamano=tamaño; 
-        this.totalExistencias=totalExistencias; 
-        this.productos=productos; 
-        this.recepciones=recepciones; 
+        this.Nombre=nombre;  
+        this.Tamano=tamaño;  
+        this.Productos=productos; 
+        this.Recepciones=recepciones; 
     }
+
+    public Bodega(){}
+    
     public int getId() {
         return id;
     }
@@ -34,51 +33,34 @@ public class Bodega {
     }
 
     public String getNombre() {
-        return nombre;
+        return this.Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.Nombre = nombre;
     }
-
-    public Double getCapacidadAlmacenamiento() {
-        return capacidadAlmacenamiento;
-    }
-
-    public void setCapacidadAlmacenamiento(Double capacidadAlmacenamiento) {
-        this.capacidadAlmacenamiento = capacidadAlmacenamiento;
-    }
-
     public Double getTamano() {
-        return tamano;
+        return this.Tamano;
     }
 
     public void setTamano(Double tamano) {
-        this.tamano = tamano;
+        this.Tamano = tamano;
     }
 
-    public int getTotalExistencias() {
-        return totalExistencias;
+    public List<InfoProducto> getProductos() {
+        return this.Productos;
     }
 
-    public void setTotalExistencias(int totalExistencias) {
-        this.totalExistencias = totalExistencias;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
+    public void setProductos(List<InfoProducto> productos) {
+        this.Productos = productos;
     }
 
     public List<RecepcionProductos> getRecepciones() {
-        return recepciones;
+        return this.Recepciones;
     }
 
     public void setRecepciones(List<RecepcionProductos> recepciones) {
-        this.recepciones = recepciones;
+        this.Recepciones = recepciones;
     }
 
 }

@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class RecepcionProductos {
     @Id
-    private int id; 
+    private Integer id; 
     private Date FechaRecepcion;
     private OrdenCompra OrdenCompra; 
 
@@ -17,6 +17,32 @@ public class RecepcionProductos {
         this.id = id; 
         this.FechaRecepcion=FechaRecepcion; 
         this.OrdenCompra = OrdenCompra;
+    }
+
+    public RecepcionProductos(){}
+    
+    public Integer getId(){
+        return this.id; 
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getFecha(){
+        return this.FechaRecepcion; 
+    }
+
+    public void setFecha(Date FechaRecepcion){
+        this.FechaRecepcion=FechaRecepcion; 
+    }
+
+    public OrdenCompra getOrden(){
+        return this.OrdenCompra; 
+    }
+
+    public void setOrden(OrdenCompra OrdenCompra){
+        this.OrdenCompra=OrdenCompra;
     }
 
 }

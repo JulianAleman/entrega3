@@ -17,11 +17,10 @@ public class Producto {
     private String UnidadMedida; 
     private Date FechaExpiracion;
     private String tipo;
-    private String FechaVencimiento;
     private Categoria Categoria;
     private EspecificacionEmpacado EspecificacionEmpacado;
     
-    public Producto(Long CodigoBarras,String Nombre, Double PrecioUnitarioVenta,String Presentacion,Integer CantidadPresentacion,String UnidadMedida,Date FechaExpiracion,String tipo,String FechaVencimiento,Categoria Categoria,EspecificacionEmpacado EspecificacionEmpacado){
+    public Producto(Long CodigoBarras,String Nombre, Double PrecioUnitarioVenta,String Presentacion,Integer CantidadPresentacion,String UnidadMedida,Date FechaExpiracion,String tipo,Categoria Categoria,EspecificacionEmpacado EspecificacionEmpacado){
         this.CodigoBarras=CodigoBarras;
         this.Nombre=Nombre;
         this.PrecioUnitarioVenta=PrecioUnitarioVenta;
@@ -30,10 +29,11 @@ public class Producto {
         this.UnidadMedida=UnidadMedida;
         this.FechaExpiracion=FechaExpiracion;
         this.tipo=tipo;
-        this.FechaVencimiento=FechaVencimiento;
         this.Categoria=Categoria;
         this.EspecificacionEmpacado=EspecificacionEmpacado;
     }
+    public Producto(){}
+    
     public Long getCodigoBarras() {
         return CodigoBarras;
     }
@@ -96,14 +96,6 @@ public class Producto {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public String getFechaVencimiento() {
-        return FechaVencimiento;
-    }
-
-    public void setFechaVencimiento(String FechaVencimiento) {
-        this.FechaVencimiento = FechaVencimiento;
     }
 
     public Categoria getCategoria() {

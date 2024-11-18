@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,4 +30,15 @@ public class SucursalController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    @PostMapping("/new/save")
+     public ResponseEntity<String> crearBar(@RequestBody Sucursal Sucursal) {
+        try {
+
+            sucursalRepository.insertarSucursal(Sucursal.getId(), Sucursal.getNombre(),Sucursal.getTamano(),Sucursal.getDireccion() , Sucursal.getTelefono(), Sucursal.getCiudad(), Sucursal.getOrden());
+            return new ResponseEntity<>("Bar creado exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {;
+            return new ResponseEntity<>("Error al crear el bar: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

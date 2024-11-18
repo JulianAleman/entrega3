@@ -10,14 +10,14 @@ import lombok.ToString;
 @ToString
 public class OrdenCompra {
     @Id
-    private Long id; 
+    private int id; 
     private Date FechaCreacion; 
     private String Estado; 
     private Date FechaEntrega;
-    private Proveedor Proveedor; 
+    private int Proveedor; 
     private List<InfoOrden> Productos; 
     
-    public OrdenCompra (Long id, Date FechaCreacion, String Estado, Date FechaEntrega, Proveedor Proveedor, List<InfoOrden> productos){
+    public OrdenCompra (int id, Date FechaCreacion, String Estado, Date FechaEntrega, int Proveedor, List<InfoOrden> productos){
         this.id=id; 
         this.FechaCreacion=FechaCreacion;
         this.Estado=Estado; 
@@ -28,19 +28,19 @@ public class OrdenCompra {
 
     public OrdenCompra(){}
 
-    public Long getId(){
+    public int getId(){
         return this.id; 
     }
 
-    public void setId(Long id){
+    public void setId(int id){
         this.id=id; 
     }
 
-    public Date getFechaC(){
+    public Date getFechaCracion(){
         return this.FechaCreacion; 
     }
 
-    public void setFechaC(Date FechaCreacion){
+    public void setFechaCreacion(Date FechaCreacion){
         this.FechaCreacion=FechaCreacion; 
     }
 
@@ -52,19 +52,19 @@ public class OrdenCompra {
         this.Estado=Estado;
     }
 
-    public Date getFechaE(){
+    public Date getFechaEntrega(){
         return this.FechaEntrega; 
     }
 
-    public void setFechaE(Date FechaEntrega){
+    public void setFechaEntrega(Date FechaEntrega){
         this.FechaEntrega=FechaEntrega; 
     }
 
-    public Proveedor geProveedor(){
+    public int geProveedor(){
         return this.Proveedor; 
     }
 
-    public void setProveedor(Proveedor Proveedor){
+    public void setProveedor(int Proveedor){
         this.Proveedor=Proveedor;
     }
 

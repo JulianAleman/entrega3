@@ -9,7 +9,7 @@ import uniandes.edu.co.demo.modelo.Bodega;
 
 public interface BodegaRepository extends MongoRepository<Bodega, Integer>{
 
-    @Query(value="{}", fields="{}")
+    @Query(value="{}")
     List<Bodega> buscarTodasLasBodegas();
 
 

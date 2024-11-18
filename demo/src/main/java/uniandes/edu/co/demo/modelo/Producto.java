@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class Producto {
     @Id
-    private Long CodigoBarras;
+    private int CodigoBarras;
     private String Nombre; 
     private Double PrecioUnitarioVenta;
     private String Presentacion;
@@ -20,7 +20,7 @@ public class Producto {
     private Categoria Categoria;
     private EspecificacionEmpacado EspecificacionEmpacado;
     
-    public Producto(Long CodigoBarras,String Nombre, Double PrecioUnitarioVenta,String Presentacion,Integer CantidadPresentacion,String UnidadMedida,Date FechaExpiracion,String tipo,Categoria Categoria,EspecificacionEmpacado EspecificacionEmpacado){
+    public Producto(int CodigoBarras,String Nombre, Double PrecioUnitarioVenta,String Presentacion,Integer CantidadPresentacion,String UnidadMedida,Date FechaExpiracion,String tipo,Categoria Categoria,EspecificacionEmpacado EspecificacionEmpacado){
         this.CodigoBarras=CodigoBarras;
         this.Nombre=Nombre;
         this.PrecioUnitarioVenta=PrecioUnitarioVenta;
@@ -34,11 +34,11 @@ public class Producto {
     }
     public Producto(){}
     
-    public Long getCodigoBarras() {
+    public int getCodigoBarras() {
         return CodigoBarras;
     }
 
-    public void setCodigoBarras(Long CodigoBarras) {
+    public void setCodigoBarras(int CodigoBarras) {
         this.CodigoBarras = CodigoBarras;
     }
 

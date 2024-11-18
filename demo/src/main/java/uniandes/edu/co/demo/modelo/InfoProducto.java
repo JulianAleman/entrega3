@@ -4,14 +4,14 @@ import lombok.ToString;
 
 @ToString
 public class InfoProducto {
-    private Integer TotalExistencias;
+    private int TotalExistencias;
     private Double CostoPromedio; 
-    private Integer NivelMinimoReOrden; 
-    private Integer CapacidadAlmacenamiento; 
-    private Integer CantidadExistenacias;
-    private Producto Producto; 
+    private int NivelMinimoReOrden; 
+    private int CapacidadAlmacenamiento; 
+    private int CantidadExistenacias;
+    private int Producto; 
     
-    public InfoProducto(Integer TotalExistencias,Double CostoPromedio,  Integer NivelMinimoReOrden, Integer CapacidadAlmacenamiento, Integer CantidadExistenacias,Producto Producto ){
+    public InfoProducto(Integer TotalExistencias,Double CostoPromedio,  Integer NivelMinimoReOrden, Integer CapacidadAlmacenamiento, Integer CantidadExistenacias,int Producto ){
         this.TotalExistencias=TotalExistencias; 
         this.CostoPromedio=CostoPromedio; 
         this.NivelMinimoReOrden=NivelMinimoReOrden; 
@@ -62,11 +62,11 @@ public class InfoProducto {
         this.CantidadExistenacias = CantidadExistenacias;
     }
     
-    public Producto getProducto() {
+    public int getProducto() {
         return Producto;
     }
     
-    public void setProducto(Producto Producto) {
+    public void setProducto(int Producto) {
         this.Producto = Producto;
     } 
 }

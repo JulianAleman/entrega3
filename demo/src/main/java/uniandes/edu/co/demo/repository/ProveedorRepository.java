@@ -5,10 +5,9 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import uniandes.edu.co.demo.modelo.Producto;
+import uniandes.edu.co.demo.modelo.Proveedor;
 
-public interface ProductoRepository extends MongoRepository<Producto, Integer>{
-
+public interface ProveedorRepository extends MongoRepository<Proveedor, Integer>{
     @Query(value="{}")
-    List<Producto> buscarTodasLosProductos();
+    List<Proveedor> buscarTodasLosProveedores();
 }

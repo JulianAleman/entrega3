@@ -7,21 +7,21 @@ import lombok.ToString;
 @ToString
 public class Ciudad {
     @Id
-    private Long Codigo;
+    private int Codigo;
     private String Nombre; 
 
-    public Ciudad(Long Codigo, String Nombre){
+    public Ciudad(int Codigo, String Nombre){
         this.Codigo=Codigo; 
         this.Nombre=Nombre; 
     }
 
     public Ciudad(){}
 
-    public Long getCodigo(){
+    public int getCodigo(){
         return this.Codigo; 
     }
 
-    public void setCodigo(Long Codigo){
+    public void setCodigo(int Codigo){
         this.Codigo=Codigo; 
     }
 

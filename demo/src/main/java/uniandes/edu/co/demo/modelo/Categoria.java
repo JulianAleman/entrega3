@@ -7,12 +7,12 @@ import lombok.ToString;
 @ToString
 public class Categoria {
     @Id
-    private Long Codigo;
+    private int Codigo;
     private String Nombre; 
     private String Descripcion; 
     private String CaracteristicasAlmacenamiento; 
 
-    public Categoria (Long Codigo, String Nombre, String Descripcion, String CaracteristicasAlmacenamiento){
+    public Categoria (int Codigo, String Nombre, String Descripcion, String CaracteristicasAlmacenamiento){
         this.Codigo=Codigo; 
         this.Nombre=Nombre;
         this.Descripcion=Descripcion;
@@ -21,11 +21,11 @@ public class Categoria {
 
     public Categoria(){}
     
-    public Long getCodigo(){
+    public int getCodigo(){
         return this.Codigo; 
     }
 
-    public void setCodigo(Long Codigo){
+    public void setCodigo(int Codigo){
         this.Codigo=Codigo;
     }
 

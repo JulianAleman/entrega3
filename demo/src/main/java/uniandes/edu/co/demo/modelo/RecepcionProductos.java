@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class RecepcionProductos {
     @Id
-    private Integer id; 
+    private int id; 
     private Date FechaRecepcion;
     private OrdenCompra OrdenCompra; 
 

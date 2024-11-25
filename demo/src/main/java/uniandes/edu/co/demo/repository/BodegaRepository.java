@@ -12,6 +12,11 @@ public interface BodegaRepository extends MongoRepository<Bodega, Integer>{
     @Query(value="{}")
     List<Bodega> buscarTodasLasBodegas();
 
+    @Query(value="{_id:?0}", delete =true)
+    void elimiarBodegaPorId(int id);
+
+    @Query("{ $insert:{_id:?0, Nombre:?1, Tamano:?2}}")
+    void crearBodega(int id, String nombre, Double tamano);
 
     
 }

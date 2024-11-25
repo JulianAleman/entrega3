@@ -34,7 +34,7 @@ public class SucursalController {
      public ResponseEntity<String> crearBar(@RequestBody Sucursal Sucursal) {
         try {
 
-            sucursalRepository.insertarSucursal(Sucursal.getId(), Sucursal.getNombre(),Sucursal.getTamano(),Sucursal.getDireccion() , Sucursal.getTelefono(), Sucursal.getCiudad(), Sucursal.getOrden());
+            sucursalRepository.insertarSucursal(Sucursal.getId(), Sucursal.getNombre(),Sucursal.getTamano(),Sucursal.getDireccion() , Sucursal.getTelefono(), Sucursal.getCiudad());
             return new ResponseEntity<>("Bar creado exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {;
             return new ResponseEntity<>("Error al crear el bar: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

@@ -12,6 +12,6 @@ public interface SucursalRepository extends MongoRepository<Sucursal, Integer>{
     @Query(value="{}")
     List<Sucursal> buscarTodasLasSucursales();
 
-    @Query("{$insert:{_id:?0, Nombre:?1, Tamamo:?2, Direccion:?3, Telefono:?4, Ciudad: ?5, OrdenCompra:?6}}")
-    void insertarSucursal(int id, String Nombre, Double Tamano, String Direccion, String Telefono, Ciudad Ciudad, OrdenCompra OrdenCompra);
+    @Query("{$insert:{_id:?0, Nombre:?1, Tamamo:?2, Direccion:?3, Telefono:?4, Ciudad: ?5}}")
+    void insertarSucursal(int id, String Nombre, Double Tamano, String Direccion, String Telefono, Ciudad Ciudad);
 }

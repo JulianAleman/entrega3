@@ -1,5 +1,7 @@
 package uniandes.edu.co.demo.modelo;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.ToString;
@@ -14,9 +16,9 @@ public class Sucursal {
     private String Direccion; 
     private String Telefono;
     private Ciudad Ciudad; 
-    private OrdenCompra OrdenCompra; 
+    private List<OrdenCompra> OrdenCompra; 
 
-    public Sucursal(int id, String Nombre, Double Tamano, String Direccion, String Telefono, Ciudad Ciudad, OrdenCompra OrdenCompra){
+    public Sucursal(int id, String Nombre, Double Tamano, String Direccion, String Telefono, Ciudad Ciudad, List<OrdenCompra> OrdenCompra){
         this.id=id; 
         this.Nombre=Nombre; 
         this.Tamano=Tamano;
@@ -76,11 +78,11 @@ public class Sucursal {
         this.Ciudad = Ciudad;
     }
 
-    public OrdenCompra getOrden(){
+    public List<OrdenCompra> getOrden(){
         return this.OrdenCompra;
     }
 
-    public void serOrden(OrdenCompra OrdenCompra){
+    public void serOrden(List<OrdenCompra> OrdenCompra){
         this.OrdenCompra=OrdenCompra;
     }
     

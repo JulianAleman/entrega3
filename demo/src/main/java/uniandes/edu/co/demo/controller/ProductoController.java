@@ -1,19 +1,13 @@
 package uniandes.edu.co.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
 import uniandes.edu.co.demo.modelo.Producto;
 import uniandes.edu.co.demo.repository.ProductoRepository;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/productos")
@@ -53,6 +47,16 @@ public class ProductoController {
             }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PutMapping("/actualizar/{codigo}")
+    public ResponseEntity<String> actualizarProducto(@PathVariable int codigo, @RequestBody Producto producto) {
+        try {
+            productoRepository.actualizarProducto(codigo, producto.getNombre(), producto.getPrecioUnitarioVenta(), producto.getPresentacion(), producto.getCantidadPresentacion(), producto.getUnidadMedida(), producto.getFechaExpiracion(), producto.getTipo(), producto.getCategoria().toString(), producto.getEspecificacionEmpacado().toString());
+            return new ResponseEntity<>("Producto actualizado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al actualizar el producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

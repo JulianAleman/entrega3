@@ -8,6 +8,7 @@ import uniandes.edu.co.demo.modelo.Producto;
 import uniandes.edu.co.demo.repository.ProductoRepository;
 
 import java.util.List;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/productos")
@@ -45,6 +46,56 @@ public class ProductoController {
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/buscarPorRangoDePrecio")
+    public ResponseEntity<List<Producto>> buscarProductosPorRangoDePrecio(@RequestParam double precioMin, @RequestParam double precioMax) {
+        try {
+            List<Producto> productos = productoRepository.buscarProductosPorRangoDePrecio(precioMin, precioMax);
+            return ResponseEntity.ok(productos);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/buscarPorFechaExpiracionPosterior")
+    public ResponseEntity<List<Producto>> buscarProductosPorFechaExpiracionPosterior(@RequestParam Date fecha) {
+        try {
+            List<Producto> productos = productoRepository.buscarProductosPorFechaExpiracionPosterior(fecha);
+            return ResponseEntity.ok(productos);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/buscarPorFechaExpiracionInferior")
+    public ResponseEntity<List<Producto>> buscarProductosPorFechaExpiracionInferior(@RequestParam Date fecha) {
+        try {
+            List<Producto> productos = productoRepository.buscarProductosPorFechaExpiracionInferior(fecha);
+            return ResponseEntity.ok(productos);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/buscarPorSucursal")
+    public ResponseEntity<List<Producto>> buscarProductosPorSucursal(@RequestParam int idSucursal) {
+        try {
+            List<Producto> productos = productoRepository.buscarProductosPorSucursal(idSucursal);
+            return ResponseEntity.ok(productos);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/buscarPorCategoria")
+    public ResponseEntity<List<Producto>> buscarProductosPorCategoria(@RequestParam String categoria) {
+        try {
+            List<Producto> productos = productoRepository.buscarProductosPorCategoria(categoria);
+            return ResponseEntity.ok(productos);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

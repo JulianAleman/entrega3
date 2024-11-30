@@ -10,5 +10,8 @@ import uniandes.edu.co.demo.modelo.Producto;
 public interface ProductoRepository extends MongoRepository<Producto, Integer>{
 
     @Query(value="{}")
-    List<Producto> buscarTodasLosProductos();
+    List<Producto> buscarTodosLosProductos();
+
+    @Query("{ $insertOne: {CodigoBarras:?0, Nombre:?1, PrecioUnitarioVenta:?2, Presentacion:?3, CantidadPresentacion:?4, UnidadMedida:?5, FechaExpiracion:?6, tipo:?7, Categoria:?8, EspecificacionEmpacado:?9}}")
+    void insertarProducto(int codigo, String nombre, Double PrecioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, String fechaExpiracion, String tipo, String categoria, String especificacionEmpacado);
 }

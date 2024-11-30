@@ -33,7 +33,7 @@ public class BodegaController {
     }
 
     @PostMapping("/new/save")
-    public ResponseEntity<String> crearBar(@RequestBody Bodega bodega) {
+    public ResponseEntity<String> crearBodega(@RequestBody Bodega bodega) {
         try {
             if (bodega.getNombre() == null || bodega.getTamano() == 0) {
                 throw new IllegalArgumentException("Nombre y Tamano son requeridos");
@@ -41,9 +41,9 @@ public class BodegaController {
             else{
             bodegaRepository.save(bodega);
             }
-            return new ResponseEntity<>("Bar creado exitosamente", HttpStatus.CREATED);
+            return new ResponseEntity<>("Bodega creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {;
-            return new ResponseEntity<>("Error al crear el bar: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al crear la bodega: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

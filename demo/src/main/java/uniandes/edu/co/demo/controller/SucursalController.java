@@ -35,9 +35,9 @@ public class SucursalController {
         try {
 
             sucursalRepository.insertarSucursal(Sucursal.getId(), Sucursal.getNombre(),Sucursal.getTamano(),Sucursal.getDireccion() , Sucursal.getTelefono(), Sucursal.getCiudad());
-            return new ResponseEntity<>("Bar creado exitosamente", HttpStatus.CREATED);
+            return new ResponseEntity<>("Sucursal creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {;
-            return new ResponseEntity<>("Error al crear el bar: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al crear la sucursal: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

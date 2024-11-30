@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,4 +47,15 @@ public class BodegaController {
             return new ResponseEntity<>("Error al crear la bodega: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/bodegas/{id}/delete")
+    public ResponseEntity<?> bodegaBorrar(@PathVariable("_id") long id) {
+        try {
+            bodegaRepository.eliminarBodegaPorId((int) id);
+            return ResponseEntity.ok("Bodega eliminada exitosamente");
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al eliminar la bodega", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
+

@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import uniandes.edu.co.demo.modelo.InfoOrden;
 import uniandes.edu.co.demo.modelo.OrdenCompra;
+import uniandes.edu.co.demo.modelo.InfoOrden;
 import uniandes.edu.co.demo.repository.OrdenCompraRepository;
 
 import java.util.Date;
@@ -37,6 +36,20 @@ public class OrdenCompraController {
         try {
             List<OrdenCompra> ordenesCompra = ordenCompraRepository.buscarTodasLasOrdenesCompra();
             return ResponseEntity.ok(ordenesCompra);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/leer/{id}")
+    public ResponseEntity<OrdenCompra> leerOrdenCompra(@PathVariable int id) {
+        try {
+            OrdenCompra ordenCompra = ordenCompraRepository.buscarOrdenCompraPorId(id);
+            if (ordenCompra != null) {
+                return ResponseEntity.ok(ordenCompra);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

@@ -10,4 +10,7 @@ public interface OrdenCompraRepository extends MongoRepository<OrdenCompra, Stri
 
     @Query(value="{}")
     List<OrdenCompra> buscarTodasLasOrdenesCompra();
+
+    @Query("{ '_id': ?0 }")
+    OrdenCompra buscarOrdenCompraPorId(int id);
 }

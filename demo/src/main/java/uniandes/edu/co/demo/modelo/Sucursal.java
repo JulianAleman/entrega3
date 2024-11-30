@@ -17,8 +17,9 @@ public class Sucursal {
     private String Telefono;
     private Ciudad Ciudad; 
     private List<OrdenCompra> OrdenCompra; 
+    private List<Bodega> Bodegas;
 
-    public Sucursal(int id, String Nombre, Double Tamano, String Direccion, String Telefono, Ciudad Ciudad, List<OrdenCompra> OrdenCompra){
+    public Sucursal(int id, String Nombre, Double Tamano, String Direccion, String Telefono, Ciudad Ciudad, List<OrdenCompra> OrdenCompra, List<Bodega> Bodegas){
         this.id=id; 
         this.Nombre=Nombre; 
         this.Tamano=Tamano;
@@ -86,7 +87,12 @@ public class Sucursal {
         this.OrdenCompra=OrdenCompra;
     }
     
+    public List<Bodega> getBodegas() {
+        return this.Bodegas;
+    }
 
-
+    public void setBodegas(List<Bodega> Bodegas) {
+        this.Bodegas = Bodegas;
+    }
 
 }

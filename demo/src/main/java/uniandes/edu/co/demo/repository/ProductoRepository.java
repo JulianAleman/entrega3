@@ -1,5 +1,6 @@
 package uniandes.edu.co.demo.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -13,5 +14,8 @@ public interface ProductoRepository extends MongoRepository<Producto, Integer>{
     List<Producto> buscarTodosLosProductos();
 
     @Query("{ $insertOne: {CodigoBarras:?0, Nombre:?1, PrecioUnitarioVenta:?2, Presentacion:?3, CantidadPresentacion:?4, UnidadMedida:?5, FechaExpiracion:?6, tipo:?7, Categoria:?8, EspecificacionEmpacado:?9}}")
-    void insertarProducto(int codigo, String nombre, Double PrecioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, String fechaExpiracion, String tipo, String categoria, String especificacionEmpacado);
+    void insertarProducto(int codigoBarras, String nombre, Double PrecioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion, String tipo, String categoria, String especificacionEmpacado);
+
+    @Query("{ $or: [ { 'CodigoBarras': ?0 }, { 'Nombre': ?1 } ] }")
+    Producto buscarProductoPorCodigoONombre(int codigo, String nombre);
 }

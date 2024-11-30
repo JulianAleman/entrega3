@@ -16,14 +16,16 @@ public class OrdenCompra {
     private Date FechaEntrega;
     private int Proveedor; 
     private List<InfoOrden> Productos; 
+    private int idSucursal;
     
-    public OrdenCompra (int id, Date FechaCreacion, String Estado, Date FechaEntrega, int Proveedor, List<InfoOrden> productos){
+    public OrdenCompra (int id, Date FechaCreacion, String Estado, Date FechaEntrega, int Proveedor, List<InfoOrden> productos, int idSucursal){
         this.id=id; 
         this.FechaCreacion=FechaCreacion;
         this.Estado=Estado; 
         this.FechaEntrega=FechaEntrega; 
         this.Proveedor=Proveedor; 
         this.Productos=productos; 
+        this.idSucursal=idSucursal;
     }
 
     public OrdenCompra(){}
@@ -75,5 +77,13 @@ public class OrdenCompra {
 
     public void setEstado(List<InfoOrden> Productos){
         this.Productos=Productos;
+    }
+
+    public int getIdSucursal(){
+        return this.idSucursal; 
+    }
+
+    public void setIdSucursal(int idSucursal){
+        this.idSucursal=idSucursal;
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import uniandes.edu.co.demo.modelo.Ciudad;
+import uniandes.edu.co.demo.modelo.OrdenCompra;
 import uniandes.edu.co.demo.modelo.Sucursal;
 
 public interface SucursalRepository extends MongoRepository<Sucursal, Integer>{
@@ -16,4 +17,11 @@ public interface SucursalRepository extends MongoRepository<Sucursal, Integer>{
 
     @Query("{ '_id': ?0 }")
     Sucursal buscarSucursalPorId(int id);
+
+    @Query(value = "{ '_id': ?0 }", fields = "{ 'ordenesDeCompra': 1, '_id': 0 }")
+    List<OrdenCompra> findOrdenesDeCompraBySucursalId(int id);
+
+    @Query(value = "{ 'ordenesDeCompra.id': ?0 }", fields = "{ 'ordenesDeCompra.$': 1 }")
+    Sucursal findOrdenDeCompraById(int ordenId);
+
 }

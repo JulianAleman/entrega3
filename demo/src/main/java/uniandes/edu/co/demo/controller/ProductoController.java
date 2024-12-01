@@ -100,7 +100,6 @@ public class ProductoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
     @PutMapping("/actualizar/{codigo}")
     public ResponseEntity<String> actualizarProducto(@PathVariable int codigo, @RequestBody Producto producto) {
         try {
@@ -110,4 +109,5 @@ public class ProductoController {
             return new ResponseEntity<>("Error al actualizar el producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

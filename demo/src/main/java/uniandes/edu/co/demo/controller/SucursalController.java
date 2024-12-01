@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import uniandes.edu.co.demo.modelo.Bodega;
 import uniandes.edu.co.demo.modelo.Sucursal;
 import uniandes.edu.co.demo.repository.SucursalRepository;
+import uniandes.edu.co.demo.modelo.InfoProducto;
+import uniandes.edu.co.demo.modelo.Producto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,9 +52,22 @@ public class SucursalController {
             if (bodegas == null || bodegas.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay bodegas asociadas a esta sucursal");
             }
-            return ResponseEntity.ok(bodegas.stream()
-                    .flatMap(bodega -> bodega.getProductos().stream())
-                    .collect(Collectors.toList()));
+
+            List<InfoProducto> inventario = bodegas.stream()
+                            .map(bodega -> {
+                                InfoProducto infoProducto = new InfoProducto();
+                                infoProducto.setProducto(bodega.getId());
+                                int totalExistencias = bodega.getProductos().stream()
+                                        .mapToInt(InfoProducto::getCantidadExistenacias)
+                                        .sum();
+                                infoProducto.setTotalExistencias(totalExistencias);
+                                infoProducto.setNivelMinimoReOrden(infoProducto.getNivelMinimoReOrden());
+                                infoProducto.setCostoPromedio(infoProducto.getCostoPromedio());
+                                return infoProducto;
+                            })
+                    .collect(Collectors.toList());
+
+            return ResponseEntity.ok(inventario);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

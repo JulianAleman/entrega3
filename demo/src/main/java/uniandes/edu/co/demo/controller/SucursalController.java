@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uniandes.edu.co.demo.modelo.Bodega;
+import uniandes.edu.co.demo.modelo.OrdenCompra;
 import uniandes.edu.co.demo.modelo.Sucursal;
 import uniandes.edu.co.demo.repository.SucursalRepository;
 import uniandes.edu.co.demo.modelo.InfoProducto;
@@ -12,6 +13,7 @@ import uniandes.edu.co.demo.modelo.Producto;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/sucursales")
@@ -68,6 +70,26 @@ public class SucursalController {
                     .collect(Collectors.toList());
 
             return ResponseEntity.ok(inventario);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/OrdenesCompra/Sucursal")
+    public ResponseEntity<List<OrdenCompra>> obtenerTodasLasOrdenes(@PathVariable int idSucursal) {
+        try {
+            List<OrdenCompra> sucursales = sucursalRepository.findOrdenesDeCompraBySucursalId(idSucursal);
+            return ResponseEntity.ok(sucursales);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/OrdenCompra")
+    public ResponseEntity<Sucursal> obtenerOrdenCompra(@PathVariable int idOrden) {
+        try {
+            Sucursal sucursales = sucursalRepository.findOrdenDeCompraById(idOrden);
+            return ResponseEntity.ok(sucursales);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

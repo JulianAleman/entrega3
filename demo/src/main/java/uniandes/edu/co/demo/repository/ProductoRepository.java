@@ -20,9 +20,10 @@ public interface ProductoRepository extends MongoRepository<Producto, Integer>{
     @Query("{ $or: [ { 'CodigoBarras': ?0 }, { 'Nombre': ?1 } ] }")
     Producto buscarProductoPorCodigoONombre(int codigo, String nombre);
 
+    @Query("{ _id: ?0 }")
     @Update("{ $set: { Nombre: ?1, PrecioUnitarioVenta: ?2, Presentacion: ?3, CantidadPresentacion: ?4, UnidadMedida: ?5, FechaExpiracion: ?6, tipo: ?7, Categoria: ?8, EspecificacionEmpacado: ?9 } }")
     void actualizarProducto(int codigoBarras, String nombre, Double PrecioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion, String tipo, String categoria, String especificacionEmpacado);
-
+    
     @Query("{ 'PrecioUnitarioVenta': { $gte: ?0, $lte: ?1 } }")
     List<Producto> buscarProductosPorRangoDePrecio(double precioMin, double precioMax);
 

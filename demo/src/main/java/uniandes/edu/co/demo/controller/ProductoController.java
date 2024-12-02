@@ -34,7 +34,7 @@ public class ProductoController {
     @PostMapping("/new/save")
     public ResponseEntity<String> crearProducto(@RequestBody Producto producto) {
         try {
-            productoRepository.insertarProducto(producto.getCodigoBarras(), producto.getNombre(), producto.getPrecioUnitarioVenta(), producto.getPresentacion(), producto.getCantidadPresentacion(), producto.getUnidadMedida(), producto.getFechaExpiracion(), producto.getTipo(), producto.getCategoria().toString(), producto.getEspecificacionEmpacado().toString());
+            productoRepository.save(producto);
             return new ResponseEntity<>("Producto creado exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al crear el producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -140,5 +140,16 @@ public class ProductoController {
             /*@RequestParam Date fechaVencimiento,*/
             @RequestParam int idCategoria) {
         return productoRepository.buscarProductosPorCriterios(precioMin, precioMax, idCategoria);
+    }
+
+    @PostMapping("/{id}/Categoria")
+    public ResponseEntity<String> agregarOrdenCompra(
+        @PathVariable int id,
+        @RequestBody Categoria nuevaOrden
+    ) {
+        productoRepository.agregarOrdenCompra(id, nuevaOrden);
+        System.out.println(nuevaOrden.getCodigo());
+        System.out.println(id);
+        return ResponseEntity.ok("Orden de compra agregada con éxito a la sucursal con ID: " + id);
     }
 }

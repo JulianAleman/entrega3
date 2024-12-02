@@ -1,16 +1,22 @@
 package uniandes.edu.co.demo.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import uniandes.edu.co.demo.modelo.Bodega;
 import uniandes.edu.co.demo.modelo.OrdenCompra;
 import uniandes.edu.co.demo.modelo.Sucursal;
 import uniandes.edu.co.demo.repository.SucursalRepository;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -33,7 +39,7 @@ public class SucursalController {
     @PostMapping("/new/save")
     public ResponseEntity<String> crearSucursal(@RequestBody Sucursal sucursal) {
         try {
-            sucursalRepository.insertarSucursal(sucursal.getId(), sucursal.getNombre(), sucursal.getTamano(), sucursal.getDireccion(), sucursal.getTelefono(), sucursal.getCiudad());
+            sucursalRepository.save(sucursal);
             return new ResponseEntity<>("Sucursal creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al crear la sucursal: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -78,5 +84,24 @@ public class SucursalController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("/Ordenescompra/todas")
+    public ResponseEntity<List<OrdenCompra>> obtenerOrdenesCompra() {
+        try {
+            List<OrdenCompra> sucursales = sucursalRepository.findAllOrdenes();
+            return ResponseEntity.ok(sucursales);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/{id}/ordenes")
+    public ResponseEntity<String> agregarOrdenCompra(
+        @PathVariable int id,
+        @RequestBody OrdenCompra nuevaOrden
+    ) {
+        sucursalRepository.agregarOrdenCompra(id, nuevaOrden);
+        return ResponseEntity.ok("Orden de compra agregada con éxito a la sucursal con ID: " + id);
     }
 }

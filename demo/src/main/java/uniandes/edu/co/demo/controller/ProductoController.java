@@ -50,9 +50,9 @@ public class ProductoController {
         }
     }
     @GetMapping("/Categoria/{id}")
-    public ResponseEntity<Producto> obtenerCategoria(@PathVariable int codigoBarras) {
+    public ResponseEntity<Producto> obtenerCategoria(@PathVariable int id) {
         try {
-            Producto productos = productoRepository.encontrarCategoriaPorCodigoBarras(codigoBarras);
+            Producto productos = productoRepository.encontrarCategoriaPorCodigoBarras(id);
             return ResponseEntity.ok(productos);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

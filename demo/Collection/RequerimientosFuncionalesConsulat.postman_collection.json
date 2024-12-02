@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "fcc2966c-a8f5-4e47-88e1-0f3305926396",
+		"name": "RequerimientosFuncionalesConsulat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37575621"
+	},
+	"item": [
+		{
+			"name": "Mostrar Productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/productos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inventario de productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/productos/consultaI?bodega=2&sucursal=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"productos",
+						"consultaI"
+					],
+					"query": [
+						{
+							"key": "bodega",
+							"value": "2"
+						},
+						{
+							"key": "sucursal",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

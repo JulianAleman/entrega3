@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class Proveedor {
     @Id
-    private int Nit;
+    private int nit;
     private String Nombre; 
     private String Direccion; 
     private String NombreContacto; 
@@ -19,7 +19,7 @@ public class Proveedor {
     private List<Integer> Productos; 
 
     public Proveedor(int Nit, String Nombre, String Direccion, String NombreContacto, String TelefonoContacto, List<Integer> productos){
-        this.Nit=Nit; 
+        this.nit=Nit; 
         this.Nombre=Nombre; 
         this.Direccion=Direccion; 
         this.NombreContacto=NombreContacto; 
@@ -30,11 +30,11 @@ public class Proveedor {
     public Proveedor(){}
 
     public int getNit() {
-        return this.Nit;
+        return this.nit;
     }
     
     public void setNit(int Nit) {
-        this.Nit = Nit;
+        this.nit = Nit;
     }
     
     public String getNombre() {

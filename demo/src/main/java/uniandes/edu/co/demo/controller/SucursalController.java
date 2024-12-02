@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.demo.modelo.Bodega;
+import uniandes.edu.co.demo.modelo.InfoProducto;
 import uniandes.edu.co.demo.modelo.OrdenCompra;
 import uniandes.edu.co.demo.modelo.Sucursal;
 import uniandes.edu.co.demo.repository.SucursalRepository;
-import uniandes.edu.co.demo.modelo.InfoProducto;
-import uniandes.edu.co.demo.modelo.Producto;
 
 
 @RestController

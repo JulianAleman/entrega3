@@ -7,7 +7,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
 
+import uniandes.edu.co.demo.modelo.Categoria;
 import uniandes.edu.co.demo.modelo.Producto;
+import uniandes.edu.co.demo.modelo.Sucursal;
 
 public interface ProductoRepository extends MongoRepository<Producto, Integer>{
 
@@ -24,6 +26,12 @@ public interface ProductoRepository extends MongoRepository<Producto, Integer>{
     @Update("{ $set: { Nombre: ?1, PrecioUnitarioVenta: ?2, Presentacion: ?3, CantidadPresentacion: ?4, UnidadMedida: ?5, FechaExpiracion: ?6, tipo: ?7, Categoria: ?8, EspecificacionEmpacado: ?9 } }")
     void actualizarProducto(int codigoBarras, String nombre, Double PrecioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion, String tipo, String categoria, String especificacionEmpacado);
     
+    @Query(value = "{ '_id': ?0 }", fields = "{ 'Categoria': 1, '_id': 0 }")
+    Categoria buscarCategoriaporProducto(int CodigoBarras);
+
+    @Query(value = "{ '_id': ?0 }", fields = "{ 'categoria': 1 }")
+    Producto encontrarCategoriaPorCodigoBarras(int codigoBarras);
+
     @Query("{ 'PrecioUnitarioVenta': { $gte: ?0, $lte: ?1 } }")
     List<Producto> buscarProductosPorRangoDePrecio(double precioMin, double precioMax);
 

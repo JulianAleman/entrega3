@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uniandes.edu.co.demo.modelo.Producto;
+import uniandes.edu.co.demo.modelo.Sucursal;
+import uniandes.edu.co.demo.modelo.Categoria;
+import uniandes.edu.co.demo.modelo.OrdenCompra;
 import uniandes.edu.co.demo.repository.ProductoRepository;
 
 import java.util.List;
@@ -35,6 +38,25 @@ public class ProductoController {
             return new ResponseEntity<>("Producto creado exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al crear el producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+      @GetMapping("/Categorias/Producto")
+    public ResponseEntity<Categoria> obtenerTodasLasCategorias(@PathVariable int CodigoBarras) {
+        try {
+            Categoria productos = productoRepository.buscarCategoriaporProducto(CodigoBarras);
+            return ResponseEntity.ok(productos);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    @GetMapping("/Categoria/{id}")
+    public ResponseEntity<Producto> obtenerCategoria(@PathVariable int id) {
+        try {
+            Producto productos = productoRepository.encontrarCategoriaPorCodigoBarras(id);
+            return ResponseEntity.ok(productos);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 

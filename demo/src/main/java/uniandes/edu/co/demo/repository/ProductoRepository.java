@@ -29,7 +29,7 @@ public interface ProductoRepository extends MongoRepository<Producto, Integer>{
     @Query(value = "{ '_id': ?0 }", fields = "{ 'Categoria': 1, '_id': 0 }")
     Categoria buscarCategoriaporProducto(int CodigoBarras);
 
-    @Query(value = "{ 'codigoBarras': ?0 }", fields = "{ 'categoria': 1 }")
+    @Query(value = "{ '_id': ?0 }", fields = "{ 'categoria': 1 }")
     Producto encontrarCategoriaPorCodigoBarras(int codigoBarras);
 
     @Query("{ 'PrecioUnitarioVenta': { $gte: ?0, $lte: ?1 } }")

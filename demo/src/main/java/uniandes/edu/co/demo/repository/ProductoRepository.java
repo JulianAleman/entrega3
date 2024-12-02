@@ -38,4 +38,7 @@ public interface ProductoRepository extends MongoRepository<Producto, Integer>{
 
     @Query("{ 'Categoria': ?0 }")
     List<Producto> buscarProductosPorCategoria(String categoria);
+
+    @Query("{ 'precio' : { $gte: ?0, $lte: ?1 },  'categoria.id' : ?2}")
+    List<Producto> buscarProductosPorCriterios(Double precioMin, Double precioMax, int idCategoria);
 }

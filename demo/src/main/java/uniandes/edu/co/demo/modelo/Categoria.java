@@ -6,27 +6,26 @@ import lombok.ToString;
 
 @ToString
 public class Categoria {
-    @Id
-    private int codigo;
+    private int Codigo;
     private String Nombre; 
     private String Descripcion; 
-    private String CaracteristicasAlmacenamiento; 
+    private String Caracteristicas; 
 
     public Categoria (int Codigo, String Nombre, String Descripcion, String CaracteristicasAlmacenamiento){
-        this.codigo=Codigo; 
+        this.Codigo=Codigo; 
         this.Nombre=Nombre;
         this.Descripcion=Descripcion;
-        this.CaracteristicasAlmacenamiento=CaracteristicasAlmacenamiento;
+        this.Caracteristicas=CaracteristicasAlmacenamiento;
     }
 
     public Categoria(){}
     
     public int getCodigo(){
-        return this.codigo; 
+        return this.Codigo; 
     }
 
     public void setCodigo(int Codigo){
-        this.codigo=Codigo;
+        this.Codigo=Codigo;
     }
 
     public String getNombre(){
@@ -45,10 +44,10 @@ public class Categoria {
         this.Descripcion=Descripcion; 
     }
     public String getCaracteristica(){
-        return this.CaracteristicasAlmacenamiento;
+        return this.Caracteristicas;
     }
 
     public void setCaracteristica( String CaracteristicasAlmacenamiento){
-        this.CaracteristicasAlmacenamiento=CaracteristicasAlmacenamiento; 
+        this.Caracteristicas=CaracteristicasAlmacenamiento; 
     }
 }

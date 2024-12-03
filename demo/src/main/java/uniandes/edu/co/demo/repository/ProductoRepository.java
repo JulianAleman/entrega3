@@ -52,6 +52,6 @@ public interface ProductoRepository extends MongoRepository<Producto, Integer>{
     List<Producto> buscarProductosPorCriterios(Double precioMin, Double precioMax, int idCategoria);
 
     @Query("{ '_id': ?0 }")
-    @Update("{ $push: { 'Categoria': ?1 } }")
+    @Update("{ $set: { 'Categoria': ?1 } }")
     void agregarOrdenCompra(int idSucursal, Categoria nuevaOrden);
 }

@@ -85,7 +85,7 @@ public class SucursalController {
 
 
 
-    // Crear una instancia del logger
+
 private static final Logger logger = LoggerFactory.getLogger(SucursalController.class);
 
 @GetMapping("/inventario/sucursal/{idSucursal}")
@@ -109,7 +109,7 @@ public ResponseEntity<?> obtenerInventarioDeSucursal(@PathVariable int idSucursa
 
         logger.info("Bodegas encontradas para la sucursal con ID {}: {}", idSucursal, bodegas.size());
 
-        // Recopilando los productos de las bodegas
+
         List<InfoProducto> inventario = new ArrayList<>();
         for (Bodega bodega : bodegas) {
             List<InfoProducto> productos = bodega.getProductos();

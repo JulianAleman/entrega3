@@ -33,7 +33,7 @@ public class ProductoController {
     @PostMapping("/new/save")
     public ResponseEntity<String> crearProducto(@RequestBody Producto producto) {
         try {
-            productoRepository.insertarProducto(producto.getCodigoBarras(), producto.getNombre(), producto.getPrecioUnitarioVenta(), producto.getPresentacion(), producto.getCantidadPresentacion(), producto.getUnidadMedida(), producto.getFechaExpiracion(), producto.getTipo(), producto.getCategoria().toString(), producto.getEspecificacionEmpacado().toString());
+            productoRepository.save(producto);
             return new ResponseEntity<>("Producto creado exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al crear el producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

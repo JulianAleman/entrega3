@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
 
 import uniandes.edu.co.demo.modelo.Categoria;
+import uniandes.edu.co.demo.modelo.OrdenCompra;
 import uniandes.edu.co.demo.modelo.Producto;
 import uniandes.edu.co.demo.modelo.Sucursal;
 
@@ -46,4 +47,11 @@ public interface ProductoRepository extends MongoRepository<Producto, Integer>{
 
     @Query("{ 'Categoria': ?0 }")
     List<Producto> buscarProductosPorCategoria(String categoria);
+
+    @Query("{ 'precio' : { $gte: ?0, $lte: ?1 },  'categoria.id' : ?2}")
+    List<Producto> buscarProductosPorCriterios(Double precioMin, Double precioMax, int idCategoria);
+
+    @Query("{ '_id': ?0 }")
+    @Update("{ $push: { 'Categoria': ?1 } }")
+    void agregarOrdenCompra(int idSucursal, Categoria nuevaOrden);
 }

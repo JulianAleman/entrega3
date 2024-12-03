@@ -1,17 +1,23 @@
 package uniandes.edu.co.demo.controller;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import uniandes.edu.co.demo.modelo.Producto;
-import uniandes.edu.co.demo.modelo.Sucursal;
-import uniandes.edu.co.demo.modelo.Categoria;
-import uniandes.edu.co.demo.modelo.OrdenCompra;
-import uniandes.edu.co.demo.repository.ProductoRepository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Date;
+import uniandes.edu.co.demo.modelo.Categoria;
+import uniandes.edu.co.demo.modelo.Producto;
+import uniandes.edu.co.demo.repository.ProductoRepository;
 
 @RestController
 @RequestMapping("/productos")
@@ -36,11 +42,12 @@ public class ProductoController {
             productoRepository.save(producto);
             return new ResponseEntity<>("Producto creado exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al crear el producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al crear el producto: " + e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-      @GetMapping("/Categorias/Producto")
+    @GetMapping("/Categorias/Producto")
     public ResponseEntity<Categoria> obtenerTodasLasCategorias(@PathVariable int CodigoBarras) {
         try {
             Categoria productos = productoRepository.buscarCategoriaporProducto(CodigoBarras);
@@ -49,6 +56,7 @@ public class ProductoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
     @GetMapping("/Categoria/{id}")
     public ResponseEntity<Producto> obtenerCategoria(@PathVariable int id) {
         try {
@@ -60,7 +68,8 @@ public class ProductoController {
     }
 
     @GetMapping("/buscarPorCodigoONombre")
-    public ResponseEntity<Producto> buscarProducto(@RequestParam(required = false) Integer codigo, @RequestParam(required = false) String nombre) {
+    public ResponseEntity<Producto> buscarProducto(@RequestParam(required = false) Integer codigo,
+            @RequestParam(required = false) String nombre) {
         try {
             Producto producto = productoRepository.buscarProductoPorCodigoONombre(codigo, nombre);
             if (producto != null) {
@@ -74,7 +83,8 @@ public class ProductoController {
     }
 
     @GetMapping("/buscarPorRangoDePrecio")
-    public ResponseEntity<List<Producto>> buscarProductosPorRangoDePrecio(@RequestParam double precioMin, @RequestParam double precioMax) {
+    public ResponseEntity<List<Producto>> buscarProductosPorRangoDePrecio(@RequestParam double precioMin,
+            @RequestParam double precioMax) {
         try {
             List<Producto> productos = productoRepository.buscarProductosPorRangoDePrecio(precioMin, precioMax);
             return ResponseEntity.ok(productos);
@@ -122,14 +132,37 @@ public class ProductoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
     @PutMapping("/actualizar/{codigo}")
     public ResponseEntity<String> actualizarProducto(@PathVariable int codigo, @RequestBody Producto producto) {
         try {
-            productoRepository.actualizarProducto(codigo, producto.getNombre(), producto.getPrecioUnitarioVenta(), producto.getPresentacion(), producto.getCantidadPresentacion(), producto.getUnidadMedida(), producto.getFechaExpiracion(), producto.getTipo(), producto.getCategoria().toString(), producto.getEspecificacionEmpacado().toString());
+            productoRepository.actualizarProducto(codigo, producto.getNombre(), producto.getPrecioUnitarioVenta(),
+                    producto.getPresentacion(), producto.getCantidadPresentacion(), producto.getUnidadMedida(),
+                    producto.getFechaExpiracion(), producto.getTipo(), producto.getCategoria().toString(),
+                    producto.getEspecificacionEmpacado().toString());
             return new ResponseEntity<>("Producto actualizado exitosamente", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al actualizar el producto: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al actualizar el producto: " + e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    @GetMapping("/productosConsulta")
+    public List<Producto> obtenerProductosPorCriterios(
+            @RequestParam Double precioMin,
+            @RequestParam Double precioMax,
+            /* @RequestParam Date fechaVencimiento, */
+            @RequestParam int idCategoria) {
+        return productoRepository.buscarProductosPorCriterios(precioMin, precioMax, idCategoria);
+    }
+
+    @PostMapping("/{id}/Categoria")
+    public ResponseEntity<String> agregarOrdenCompra(
+            @PathVariable int id,
+            @RequestBody Categoria nuevaOrden) {
+        productoRepository.agregarOrdenCompra(id, nuevaOrden);
+        System.out.println(nuevaOrden.getCodigo());
+        System.out.println(id);
+        return ResponseEntity.ok("Orden de compra agregada con éxito a la sucursal con ID: " + id);
+    }
 }

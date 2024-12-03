@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
 
 import uniandes.edu.co.demo.modelo.Categoria;
+import uniandes.edu.co.demo.modelo.EspecificacionEmpacado;
 import uniandes.edu.co.demo.modelo.OrdenCompra;
 import uniandes.edu.co.demo.modelo.Producto;
 import uniandes.edu.co.demo.modelo.Sucursal;
@@ -17,8 +18,8 @@ public interface ProductoRepository extends MongoRepository<Producto, Integer>{
     @Query(value="{}")
     List<Producto> buscarTodosLosProductos();
 
-    @Query("{ $insertOne: {CodigoBarras:?0, Nombre:?1, PrecioUnitarioVenta:?2, Presentacion:?3, CantidadPresentacion:?4, UnidadMedida:?5, FechaExpiracion:?6, tipo:?7, Categoria:?8, EspecificacionEmpacado:?9}}")
-    void insertarProducto(int codigoBarras, String nombre, Double PrecioUnitarioVenta, String presentacion, Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion, String tipo, String categoria, String especificacionEmpacado);
+    @Query("{ $set: { _id: ?0, Nombre: ?1, PrecioUnitarioVenta: ?2, Presentacion: ?3, CantidadPresentacion: ?4, UnidadMedida: ?5, FechaExpiracion: ?6, tipo: ?7, Categoria: ?8, EspecificacionEmpacado: ?9 }}")
+    void insertarProducto(int _id, String Nombre, Double PrecioUnitarioVenta, String Presentacion, Integer CantidadPresentacion, String UnidadMedida, Date FechaExpiracion, String tipo, Categoria Categoria, EspecificacionEmpacado EspecificacionEmpacado);
 
     @Query("{ $or: [ { 'CodigoBarras': ?0 }, { 'Nombre': ?1 } ] }")
     Producto buscarProductoPorCodigoONombre(int codigo, String nombre);
